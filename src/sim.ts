@@ -5,7 +5,7 @@ export const START_X = WIDTH / 2 - BIRD_SIZE / 2;
 export const PIXELS_PER_METER = BIRD_SIZE / 0.3; // 100 pixels = 1 meter
 export const GRAVITY = 9.81 * PIXELS_PER_METER; // pixels per second squared
 export const FLAP_SPEED = -350;
-export const PIPE_WIDTH = 70, PIPE_GAP = 150, PIPE_SPEED = 200;
+export const PIPE_WIDTH = 70, PIPE_GAP = 150, PIPE_SPEED = 260;
 export const PIPE_INTERVAL = 1.3;
 export const MAX_GAP_SHIFT = 150; // max vertical move of a gap vs the previous one, keeps every course fair
 
