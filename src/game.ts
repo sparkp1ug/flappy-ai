@@ -8,6 +8,7 @@ const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 let last = performance.now();
 let world = createWorld(1);
 let flapQueued = false;
+let aiMode = false;
 
 
 window.addEventListener('keydown', (e) => {
@@ -19,6 +20,9 @@ window.addEventListener('keydown', (e) => {
         } else {
             flapQueued = true;
         }
+    }
+    if(e.code === 'KeyA') {
+        aiMode = !aiMode;
     }
 });
 
@@ -43,6 +47,8 @@ function render(){
     ctx.font = "48px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("Best Score: " + bestScore, canvas.width / 2, 50);
+    ctx.textAlign = "left";
+    ctx.fillText(aiMode ? "AI" : "You", 50, 50)
     ctx.restore();
 
     if (allDead(world)) {
@@ -59,8 +65,6 @@ function render(){
 function gameLoop(now: number) {
     const dt = Math.min((now - last) / 1000, 0.05); // Convert to seconds
     last = now;
-
-    let aiMode = false;
 
     if(!allDead(world))
         step(world, dt, [aiMode ? think(bestbrain, getInputs(world, world.birds[0])) > 0.5 : flapQueued]);
